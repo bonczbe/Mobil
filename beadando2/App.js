@@ -65,9 +65,7 @@
           return (
             <ScrollView style={styles.scrollstyle}>
               <View style={styleNowBackg}>
-                
                 {navbar(navigation)}
-                
                 <View style={styles.container}>
                 <Text style = {styles.alignCent}>More</Text>
                   <Text style = {styles.alignCent}>
@@ -105,8 +103,6 @@
           (darkenabled)?darkenabled=false:darkenabled=true;
           navigation.navigate({name:'Options',params:{dark:darkenabled}});
         }
-
-
         const cardimg=[
           {'img': require("./src/images/android.png")},
           {'img': require("./src/images/apple.png")},
@@ -118,18 +114,22 @@
           {'img': require("./src/images/shiba.png")},
           {'img': require("./src/images/troll.png")},
         ]
-
-        
-
         const cover = require("./src/images/cover.png")
         const coverr = require("./src/images/troll.png")
         var check= []
+        function check2Card(check){
+          if(check[1].img==check[0].img){
+            check[1].found=true
+            check[0].found=true
+            addpoint();
+          }else{
+            check[0].fliped=false
+            check[1].fliped=false
+          }
+        }
 
         function renderimg(card){
-            
-            
             return (
-              
               <Image
                 style={styles.front} 
                 source={card.fliped==true?card.img:cover} 
@@ -182,19 +182,6 @@
               }
             }
           }
-
-          function check2Card(check){
-            if(check[1].img==check[0].img){
-              check[1].found=true
-              check[0].found=true
-              addpoint();
-            }else{
-              check[0].fliped=false
-              check[1].fliped=false
-            }
-          }
-
-          
           const kever = () =>{
             const kevert=[...cardimg, ...cardimg]
             .sort(() => Math.random()-0.5)
@@ -202,14 +189,10 @@
             
             setCards(kevert)
           }
-
-
           return (
             <ScrollView style={styles.scrollstyle}>
               <View style={styleNowBackg}>
-                
                 {navbar(navigation)}
-                
                 <View style={styles.container}>
                   <Text style = {styles.alignCent}>Game</Text>
                   <Button 
@@ -219,9 +202,7 @@
                   <Text>
                     Points: {point}
                   </Text>
-
                       <View style={styles.cardgrid}>
-
                         {cards.map(card=>(
                             <View style={styles.card} key={card.id}>
                               <Pressable 
@@ -234,9 +215,7 @@
                               </Pressable>
                           </View>
                         ))}
-
                       </View>
-
                 </View>
               </View>
             </ScrollView>
