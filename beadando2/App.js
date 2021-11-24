@@ -117,16 +117,6 @@
         const cover = require("./src/images/cover.png")
         const coverr = require("./src/images/troll.png")
         var check= []
-        function check2Card(check){
-          if(check[1].img==check[0].img){
-            check[1].found=true
-            check[0].found=true
-            addpoint();
-          }else{
-            check[0].fliped=false
-            check[1].fliped=false
-          }
-        }
 
         function renderimg(card){
             return (
@@ -147,16 +137,29 @@
           let [flag, setFlag] = useState(true)
           let toggleSwitch = () => setFlag(previousState => !previousState);
           const [point, setPoint]= useState([0])
+          
+        function check2Card(check){
+          if(check[1].img==check[0].img){
+            check[1].found=true
+            check[0].found=true
+            addpoint();
+          }else{
+            check[0].fliped=false
+            check[1].fliped=false
+          }
+        }
+        
+        function addpoint(){
+          var help = point
+          help++
+          if(help==(cards.length/2))alert("Winner winner chicken dinner!")
+          setPoint(help)
+        }
 
           function nullaz(){
             setPoint([0])
           }
-          function addpoint(){
-            var help = point
-            help++
-            if(help==(cards.length/2))alert("Winner winner chicken dinner!")
-            setPoint(help)
-          }
+          
 
           const handleClick = (card) => {
             
